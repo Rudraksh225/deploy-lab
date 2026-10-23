@@ -1,11 +1,10 @@
 import os
+
 import cv2
 import numpy as np
-from fastapi import FastAPI, UploadFile
-from ultralytics import YOLO
-from fastapi import HTTPException
-#
 import tritonclient.http as triton_http
+from fastapi import FastAPI, HTTPException, UploadFile
+from ultralytics import YOLO
 
 _original_client_init = triton_http.InferenceServerClient.__init__
 
@@ -15,7 +14,6 @@ def _client_init_with_longer_timeout(self, *args, **kwargs):
     return _original_client_init(self, *args, **kwargs)
 
 triton_http.InferenceServerClient.__init__ = _client_init_with_longer_timeout
-#
 
 app = FastAPI(title="deploy-lab gateway")
 model = YOLO(os.getenv("TRITON_URL", "http://localhost:8000/yolo_onnx_trt"), task="detect")

@@ -1,5 +1,6 @@
 """Usage: python src/val.py <model_path> <device>"""
 import sys
+
 from ultralytics import YOLO
 
 if __name__ == "__main__":

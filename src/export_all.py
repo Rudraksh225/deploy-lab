@@ -1,5 +1,6 @@
 import shutil
 from pathlib import Path
+
 from ultralytics import YOLO
 
 ART = Path("artifacts")

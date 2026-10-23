@@ -5,6 +5,7 @@
 import json
 import os
 import sys
+
 import numpy as np
 from ultralytics import YOLO
 
@@ -26,14 +27,14 @@ def main(path, device, label=None, warmup=30, iters=300, imgsz=640):
         infer.append(s["inference"])
         total.append(sum(s.values()))
 
-    row = dict(
-        model = label or os.path.basename(path), 
-        device = str(device),
-        infer_p50_ms = round(float(np.percentile(infer, 50)), 2),
-        infer_p90_ms = round(float(np.percentile(infer, 95)), 2),
-        e2e_fps = round(1000 / float(np.percentile(total, 50)), 1), 
-        size_mb = round(size_mb(path), 1)
-    )
+    row = {
+        "model": label or os.path.basename(path),
+        "device": str(device),
+        "infer_p50_ms": round(float(np.percentile(infer, 50)), 2),
+        "infer_p90_ms": round(float(np.percentile(infer, 95)), 2),
+        "e2e_fps": round(1000 / float(np.percentile(total, 50)), 1),
+        "size_mb": round(size_mb(path), 1),
+    }
     print(json.dumps(row))
     os.makedirs("results", exist_ok=True)
     with open("results/bench.jsonl", "a") as f:
