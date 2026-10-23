@@ -1,4 +1,4 @@
-# YOLO26 Inference Deployment Lab
+# Inference Deployment Lab
 
 <p align="center">
   <strong>From model optimization to a containerized, GPU-backed object detection API.</strong>
@@ -152,10 +152,6 @@ Generated exports in `artifacts/`, benchmark output in `results/`, local environ
 - **API engineering:** FastAPI upload endpoint, input validation, and structured JSON responses
 - **Containers, observability, and CI:** Docker Compose, GPU-enabled containers, Prometheus metrics scraping, Grafana integration, and a GitHub Actions workflow for linting and gateway image builds
 - **Performance engineering:** warm-up runs, percentile latency reporting, throughput comparison, and model-format trade-offs
-
-## Current scope
-
-This repository is a practical deployment and benchmarking project. The results above come from a local single-image benchmark; its raw JSONL is ignored by Git. The project does not yet include Triton concurrency/load-test results, saved accuracy comparisons for each precision, or pre-provisioned Grafana dashboards. Those are useful next steps for making performance and accuracy trade-offs reproducible across machines.
 
 ## License
 
