@@ -1,0 +1,19 @@
+ultralytics 
+# onnx>=1.21.0,<1.22 
+onnxslim 
+openvino 
+nncf
+tritonclient[http]
+fastapi
+uvicorn[standard]
+opencv-python-headless 
+numpy 
+pandas 
+tabulate 
+nvidia-modelopt[onnx]>=0.47.0
+onnx-graphsurgeon
+onnxscript
+tensorrt-cu13
+
+# Never install 'onnxruntime' and 'onnxruntime-gpu' together in the same venv
+# onnxruntime-gpu=1.22.0

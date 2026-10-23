@@ -1,0 +1,5 @@
+name: "yolo_onnx_cuda"
+platform: "onnxruntime_onnx"
+max_batch_size: 8
+dynamic_batching { max_queue_delay_microseconds: 5000 }
+instance_group [ { kind: KIND_GPU, count: 1 } ]

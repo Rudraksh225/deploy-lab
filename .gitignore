@@ -1,0 +1,23 @@
+artifacts/
+docs/
+results/
+__pycache__/
+.venv/
+venv/
+*.pyc
+
+# Local settings and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Generated model exports kept outside the Triton model repository
+/yolo26n.pt
+/yolo26n.onnx
+/yolo26n.int8.onnx
+/yolo26n.fp16.onnx
+
+# Local notes and unused starter file
+/info.md
+/main.py

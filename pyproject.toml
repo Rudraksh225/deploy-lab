@@ -1,0 +1,29 @@
+    [project]
+    name = "deploy-lab"
+    version = "0.1.0"
+    description = "YOLO26 inference optimization and deployment with NVIDIA Triton and FastAPI"
+    readme = "README.md"
+    requires-python = ">=3.11"
+    dependencies = [
+        "fastapi>=0.153.0",
+        "nncf>=3.4.0",
+        "numpy>=2.4.6",
+        "nvidia-modelopt[onnx]>=0.47.0",
+        "onnx-graphsurgeon>=0.6.1",
+        "onnxruntime-gpu==1.22.0",
+        "onnxscript>=0.7.2",
+        "onnxslim>=0.1.98",
+        "opencv-python-headless>=5.0.0.93",
+        "openvino>=2026.4.1",
+        "pandas>=3.0.6",
+        "tabulate>=0.10.0",
+        "tensorrt-cu13>=11.4.0.106",
+        "tritonclient[http]>=2.73.0",
+        "ultralytics>=8.4.183",
+        "uvicorn[standard]>=0.54.0",
+]
+
+[tool.uv]
+environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+]

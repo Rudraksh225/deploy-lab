@@ -1,0 +1,11 @@
+name: "yolo_onnx_trt"
+platform: "onnxruntime_onnx"
+max_batch_size: 8
+dynamic_batching { max_queue_delay_microseconds: 5000 }
+instance_group [ { kind: KIND_GPU, count: 1 } ]
+optimization { execution_accelerators {
+  gpu_execution_accelerator : [ {
+    name : "tensorrt"
+    parameters { key: "precision_mode" value: "FP16" }
+    parameters { key: "max_workspace_size_bytes" value: "1073741824" }
+  } ] } }

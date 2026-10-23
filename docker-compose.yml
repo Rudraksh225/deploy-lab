@@ -1,0 +1,32 @@
+services:
+  triton:
+    image: nvcr.io/nvidia/tritonserver:26.09-py3
+    command: tritonserver --model-repository=/models
+    volumes:
+      - ./model_repository:/models
+    ports: ["8000:8000", "8001:8001", "8002:8002"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  gateway:
+    build: ./gateway
+    environment:
+      TRITON_URL: http://triton:8000/yolo_onnx_trt
+    ports: ["8080:8080"]
+    depends_on: [triton]
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: ["9090:9090"]
+
+  grafana:
+    image: grafana/grafana
+    ports: ["3000:3000"]
+    depends_on: [prometheus] 
